@@ -30,7 +30,7 @@ class Welcome extends CI_Controller {
 		$data['offset']=$offset;
 		$config['total_rows'] = $this->Semprul_model->hitung_produk($keyword)->num_rows();
 		$config['base_url'] = base_url().'produk/index';
-		$config['per_page'] = 3;
+		$config['per_page'] = 20;
 		$config['full_tag_open']="<ul class='pagination'>";
 		$config['full_tag_close']="</ul>";
 		$config['num_tag_open']="<li>";
@@ -52,8 +52,10 @@ class Welcome extends CI_Controller {
 		$data['produk'] = $this->Semprul_model->dataProduk($keyword,$config['per_page'],$offset);
 
 		$this->load->view('semprulshop/header_semprul',$data);
-		$this->load->view('semprulshop/navbar', $da);
-		$this->load->view('welcome_message', $data);
+		// $this->load->view('semprulshop/navbar', $da);
+		$this->load->view('semprulshop/content', $data);
+		// $this->load->view('welcome_message', $data);
 		$this->load->view('semprulshop/footer_semprul');
+		// $this->template->load(template().'/template',template().'/content',$data);
 	}
 }

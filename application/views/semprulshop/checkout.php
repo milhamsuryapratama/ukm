@@ -1,92 +1,14 @@
-	
-<section id="slider"><!--slider-->
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-12">
-				<div id="slider-carousel" class="carousel slide" data-ride="carousel">
-					<ol class="carousel-indicators">
-						<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
-						<li data-target="#slider-carousel" data-slide-to="1"></li>
-						<li data-target="#slider-carousel" data-slide-to="2"></li>
-					</ol>
-
-					<div class="carousel-inner">
-						<div class="item active">
-							<div class="col-sm-6">
-								<h1><span>E</span>-SHOPPER</h1>
-								<h2>Free E-Commerce Template</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-								<button type="button" class="btn btn-default get">Get it now</button>
-							</div>
-							<div class="col-sm-6">
-								<img src="<?=base_url()?>assets/images/home/girl1.jpg" class="girl img-responsive" alt="" />
-								<img src="<?=base_url()?>assets/images/home/pricing.png"  class="pricing" alt="" />
-							</div>
-						</div>
-						<div class="item">
-							<div class="col-sm-6">
-								<h1><span>E</span>-SHOPPER</h1>
-								<h2>100% Responsive Design</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-								<button type="button" class="btn btn-default get">Get it now</button>
-							</div>
-							<div class="col-sm-6">
-								<img src="<?=base_url()?>assets/images/home/girl2.jpg" class="girl img-responsive" alt="" />
-								<img src="<?=base_url()?>assets/images/home/pricing.png"  class="pricing" alt="" />
-							</div>
-						</div>
-
-						<div class="item">
-							<div class="col-sm-6">
-								<h1><span>E</span>-SHOPPER</h1>
-								<h2>Free Ecommerce Template</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-								<button type="button" class="btn btn-default get">Get it now</button>
-							</div>
-							<div class="col-sm-6">
-								<img src="<?=base_url()?>assets/images/home/girl3.jpg" class="girl img-responsive" alt="" />
-								<img src="<?=base_url()?>assets/images/home/pricing.png" class="pricing" alt="" />
-							</div>
-						</div>
-
-					</div>
-
-					<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
-						<i class="fa fa-angle-left"></i>
-					</a>
-					<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
-						<i class="fa fa-angle-right"></i>
-					</a>
-				</div>
-
-			</div>
+<div class="content">
+	<div class="wrapper">	
+		<div class="breaking-news">
+			<span class="the-title">CheckOut</span>
 		</div>
-	</div>
-</section><!--/slider-->
 
-<section id="true">
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-3">
-				<div class="left-sidebar">
-					<h2>Category</h2>
-					<div class="panel-group category-products" id="accordian"><!--category-productsr-->
-						<?php 
-						foreach ($kategori as $k) { ?>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="<?=base_url()?>produk/kategori/<?=$k['kategori_slug']?>/#true"><?=$k['nama_kategori']?></a></h4>
-								</div>
-							</div>
-						<?php } ?>
-					</div><!--/category-products-->
-				</div>
-			</div>
+		<div class="main-content">
+			<p class="sidebar-title text-danger produk-title"> Berikut Data Pesanan anda</p>
+			<div class="col-md-8">
 
-			<div class="col-sm-9 padding-right">
-				<div class="features_items"><!--features_items-->
-					<h2 class="title text-center">Checkout</h2>
-					<table class="table table-striped table-bordered table-hover">
+				<table class="table table-striped table-bordered table-hover">
 						<tr>
 							<th colspan="2"><center><strong>Data Pembeli</strong></center></th>
 						</tr>
@@ -135,164 +57,147 @@
 								<th>Kota</th>
 								<td>
 									<?php 
-									$id = $seller['kota_id'] - 1;
-									$pro = $seller['provinsi_id'] - 1;
-									echo $provinsi['rajaongkir']['results'][$pro]['province'] .','. $kota['rajaongkir']['results'][$id]['city_name'];
+										$id = $seller['kota_id'] - 1;
+										$pro = $seller['provinsi_id'] - 1;
+										echo $provinsi['rajaongkir']['results'][$pro]['province'] .','. $kota['rajaongkir']['results'][$id]['city_name'];
 									?> 
 									<input type="hidden" id="kotaId" value="<?=$seller['kota_id']?>">
 								</td>
 							</tr>
 						<?php } ?>
 					</table>
-					<section id="cart_items">
-						<div class="review-payment">
-							<h2>Review & Payment</h2>
-						</div>
 
-						<div class="table-responsive cart_info">
-							<table class="table table-condensed">
-								<thead>
-									<tr class="cart_menu">
-										<td class="image">Item</td>
-										<td class="description">Nama Produk</td>
-										<td class="price">Harga</td>
-										<td class="price">Diskon</td>
-										<td class="quantity">Qty</td>
-										<td class="total">Berat</td>
-										<td>Total</td>
-										<td></td>
-									</tr>
-								</thead>
-								<tbody>
-									<?php 
-									$no = 1;
-									foreach ($order_check as $oc) { ?>
-										<tr>
-											<td colspan="7"><?=$oc['username']?></td>
-										</tr>
-										<?php
-										$q = $this->db->query("SELECT * FROM order_temp JOIN produk ON order_temp.id_produk = produk.id_produk WHERE order_temp.id_session = '".$this->session->userdata('sessionUser')."' AND produk.username = '".$oc['username']."' AND order_temp.status = 'Y' ORDER BY order_temp.id_order_temp DESC")->result_array();
-										foreach ($q as $qo) { ?>
-											<tr>
-												<td class="cart_product">
-													<input type="hidden" class="idordertemp" value="<?=$qo['id_order_temp']?>">
-													<input type="hidden" class="idprdk" value="<?=$qo['id_produk']?>">
-													<input type="hidden" class="id<?=$no?>" value="<?=$qo['id_order_temp']?>">
-													<?php $u = $this->db->query("SELECT kota_id FROM seller WHERE nama = '".$qo['username']."'")->row_array();
-													?>
-													<input type="hidden" class="seller_kota_id<?=$no?>" value="<?=$u['kota_id']?>">
-													<img src="<?=base_url()?>assets/upload/gambar_produk/<?=$qo['gambar']?>" width="50">
-												</td>
-												<td class="cart_description">
-													<p><h4><?=$qo['nama_produk']?> </h4></p>
-													<?php if ($qo['id_ukuran'] == '0') {
-														echo "";
-													} else { 
-														$y = $this->db->query("SELECT ukuran FROM ukuran WHERE id = '$qo[id_ukuran]' ")->row_array();
-														?>
-														<span>Ukuran : <?=$y['ukuran']?></span>
-													<?php } ?>
-												</td>
-												<td class="cart_price">
-													<p>Rp. <?=number_format($qo['harga_jual'],0)?></p>
-												</td>
-												<td class="cart_price">
-													<p><?=number_format($qo['diskon'])?>%</p>
-												</td>
-												<td class="cart_quantity">
-													<p><?=$qo['jumlah']?></p>
-												</td>
-												<td class="cart_quantity">
-													<p><?=$qo['berat']?></p>
-												</td>
-												<td class="cart_total">
-													<p class="ttl<?=$no?>">Rp. <?=number_format($qo['total'],0)?></p>
-												</td>
-												<td class="cart_delete">
-													<a class="cart_quantity_delete" href="<?=base_url()?>produk/hapus_keranjang/<?=$qo['id_order_temp']?>"><i class="fa fa-times"></i></a>
-												</td>
-											</tr>
+				<table class="table table-striped">
+					<tbody>
+						<tr>
+							<td></td>
+							<td>Barang</td>
+							<td>Nama</td>
+							<td>Harga</td>
+							<td>Diskon</td>
+							<td>Qty</td>
+							<td>Total</td>
+							<td>Action</td>
+						</tr>
+						<?php $no = 1; foreach ($order_check as $k) { ?>
+							<tr>
+								<td colspan="8"><strong>Penjual : <?=$k['username']?>
+									(
+										<?php 
+										$id = $k['kota_id'] - 1;
+										$pro = $k['provinsi_id'] - 1;
+										echo $provinsi['rajaongkir']['results'][$pro]['province'] .','. $kota['rajaongkir']['results'][$id]['city_name'];
+										?>
+									)</strong>
+								</td>
+							</tr>
+							<?php 
+							$q = $this->db->query("SELECT * FROM order_temp JOIN produk ON order_temp.id_produk = produk.id_produk WHERE order_temp.id_session = '".$this->session->userdata('sessionUser')."' AND produk.username = '".$k['username']."' AND order_temp.status = 'Y' ORDER BY order_temp.id_order_temp DESC")->result_array();
+							foreach ($q as $qo) { ?>
+								<input type="hidden" class="idordertemp" value="<?=$qo['id_order_temp']?>">
+								<input type="hidden" class="idprdk" value="<?=$qo['id_produk']?>">
+								<input type="hidden" class="id<?=$no?>" value="<?=$qo['id_order_temp']?>">
+								<?php $u = $this->db->query("SELECT kota_id FROM seller WHERE nama = '".$qo['username']."'")->row_array();
+								?>
+								<input type="hidden" class="seller_kota_id<?=$no?>" value="<?=$u['kota_id']?>">
+								<tr>
+									<td></td>
+									<td><img src="<?=base_url()?>assets/upload/gambar_produk/<?=$qo['gambar']?>" width="50"></td>
+									<td>
+										<p><h4> <a href="<?=base_url()?>produk/detail/<?=$qo['produk_slug']?>/#true"><?=$qo['nama_produk']?></a> </h4></p> 
+										<?php if ($qo['id_ukuran'] == 0) {
+											echo "";
+										} else { 
+											$y = $this->db->query("SELECT ukuran FROM ukuran WHERE id = '$qo[id_ukuran]' ")->row_array();
+											?>
+											<span>Ukuran : <?=$y['ukuran']?></span>
 										<?php } ?>
-											<tr>
-												<td colspan="7">
-													<div class="review-payment">
-														<h2>Pilih Kurir</h2>
-													</div>
-													<div class="form-group">
-														<select class="kurir" id="kurir<?=$no?>" onchange="getOngkir(<?=$no?>)">
-															<option selected>PILIH KURIR</option>
-															<option value="jne">JNE</option>
-															<option value="pos">POS</option>
-															<option value="tiki">TIKI</option>
-														</select>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td colspan="7"><p id="result<?=$no?>"></p></td>
-											</tr>
-									<?php $no++; } ?>
+									</td>
+									<td><p>Rp. <?=number_format($qo['harga_jual'],0)?></p></td>
+									<td><p><?=number_format($qo['diskon'])?>%</p></td>
+									<td><p><?=$qo['jumlah']?></p></td>
+									<td><p class="cart_total_price"><p class="ttl<?=$no?>">Rp. <?=number_format($qo['total'],0)?></p></td>
+									<!-- <td><a class="cart_quantity_delete" href="<?=base_url()?>produk/hapus_keranjang/<?=$qo['id_order_temp']?>">Hapus</a></td> -->
+								</tr>								
+							<?php }
+							?>		
+							<tr>
+									<td>
+										<h2>Pilih Kurir</h2>
+									</td>
+									<td colspan="6">
+										<select class="kurir" id="kurir<?=$no?>" onchange="getOngkir(<?=$no?>)">
+											<option selected>PILIH KURIR</option>
+											<option value="jne">JNE</option>
+											<option value="pos">POS</option>
+											<option value="tiki">TIKI</option>
+										</select>
+									</td>
+								</tr>	
+								<tr>
+									<td>Pilih</td>
+									<td colspan="5">
+										<p id="result<?=$no?>"></p>
+									</td>
+								</tr>				
+						<?php $no++; } ?>						
 
-									<tr>
-										<td colspan="4">&nbsp;</td>
-										<td colspan="2">
-											<table class="table table-condensed total-result">
-												<tr>
-													<td>Total Berat</td>
-													<td>
-														<span id="total_berat">
-															<?php 
-															$jml_berat = $this->db->query("SELECT jumlah,sum(berat*jumlah) as berat FROM order_temp JOIN produk WHERE order_temp.id_produk = produk.id_produk AND id_session = '".$this->session->userdata('sessionUser')."' AND status = 'Y'")->row_array();
-															echo $jml_berat['berat'] . '</span> <span> Kg </span>';
-															?>
-														</span>
-													</td>
-												</tr>
-												<tr>
-													<td>Total Bayar</td>
-													<td><span>
-														<?php 
-														$total = $this->db->query("SELECT sum(total) as total FROM order_temp WHERE id_session = '".$this->session->userdata('sessionUser')."' AND status = 'Y'")->row_array();
-														echo "<p id='total'>Rp. " .number_format($total['total'],0) ."</p>";
-														?>
-														<input type="hidden" name="total_bayar" id="total_bayar" value="<?=$total['total']?>">
-													</td></span>
-												</tr>
-											</table>
-										</td>
-									</tr>
-									<tr>
-										<td colspan="4"></td>
-										<td>
-											<button id="simpan" class="btn btn-primary" onclick="proses()">Lakukan Pembayaran</button>
-											<form action="<?=base_url()?>produk/cancle_checkout">
-												<button type="submit" id="batal" class="btn btn-primary">Batal</button>
-											</form>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</section>
-					<!-- <div class="review-payment">
-						<h2>Pilih Kurir</h2>
-					</div>
-					<div class="form-group">
-						<select class="form-control" id="kurir" onchange="getOngkir()">
-							<option selected>PILIH KURIR</option>
-							<option value="jne">JNE</option>
-							<option value="pos">POS</option>
-							<option value="tiki">TIKI</option>
-						</select>
-					</div> -->
-					<!-- <p id="result"></p>	 -->
-				</div><!--features_items-->
+						</tbody>
+					</table>
+
+					<table class="table table-striped">
+						<tbody>
+							<tr>
+								<td>Total</td>
+								<td>
+									<?php 
+									$total = $this->db->query("SELECT sum(total) as total FROM order_temp WHERE id_session = '".$this->session->userdata('sessionUser')."' AND status = 'Y'")->row_array();
+									echo "<p id='total'>Rp. " .number_format($total['total'],0) ."</p>";
+									?>
+									<input type="hidden" name="total_bayar" id="total_bayar" value="<?=$total['total']?>">
+								</td>
+							</tr>
+							<tr>
+								<td>Total Berat</td>
+								<td><span id="total_berat">
+									<?php 
+									$jml_berat = $this->db->query("SELECT jumlah,sum(berat*jumlah) as berat FROM order_temp JOIN produk WHERE order_temp.id_produk = produk.id_produk AND id_session = '".$this->session->userdata('sessionUser')."' AND status = 'Y'")->row_array();
+									echo $jml_berat['berat'] . '</span> <span> Kg </span>';
+									?>
+									</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<a class="btn btn-success btn-sm" href="<?=base_url()?>produk/cancle_checkout">Batal</a>
+					<input type="submit" name="goCheckout" onclick="proses()" class="btn btn-primary" value="Lakukan Pembayaran" style="float: right;">
+					<!-- <a class="btn btn-primary btn-sm" href="http://localhost/marketplace/produk/checkouts">Selesai Belanja</a><hr><br><b>Informasi dari Reseller :</b><p></p> -->
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec scelerisque condimentum mattis. Suspendisse potenti. Proin vitae elementum nisi. Aliquam eu pretium risus. Nam varius efficitur consectetur. Aenean vestibulum felis sed mollis faucibus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin venenatis est sit amet eleifend vehicula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id nunc eu odio ultrices pulvinar non feugiat felis.&nbsp; dfsdfsdf</p><p>Duis consequat urna sapien, porta gravida diam venenatis at. Duis at ornare enim, ac accumsan eros. Sed in finibus metus. Etiam blandit tristique orci, sit amet congue dui facilisis id. Donec fermentum diam at orci viverra placerat. Sed nunc lorem, cursus nec vestibulum hendrerit, tempus et libero. ertert</p></div>
+
+				</div>
+				<div class="col-sm-4 colom44">
+					<!-- <table class="table table-condensed">
+						<tbody>
+							<tr class="alert alert-info"><th scope="row" style="width:90px">Pengirim</th> <td>Syarii Sentral</td></tr>
+							<tr><th scope="row">Email</th> <td>reseller.padang@gmail.com</td></tr>
+
+							<tr><th scope="row">Alamat</th> <td>Jl. Ulak Karang Raya, No 165, Padang Panjang, Sumatera Barat</td></tr>
+							<tr><th scope="row">Keterangan</th> <td>Kami merupakan perusahaan yang bergerak dalam bidang kecantikan. Produk yang kami hasilkan secara ilmiah terbukti bermanfaat.  Harapan perusahaan kami adalah, menciptakan produk kecantikan produksi Indonesia yang berstandar internasional.</td></tr>
+						</tbody>
+					</table> -->
+					<img style="width:100%" src="http://localhost/marketplace/asset/foto_pasangiklan/ekpedisi2.jpg">
+					<hr>
+				</div>					<div class="clear-float"></div>
 			</div>
 		</div>
-	</div>
-</section>
 
-<script>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+  <script>
 
 	var totalFix = '';
 	var service = '';
@@ -358,6 +263,7 @@
 		let id = $('.id'+n);
 		let idp = [];
 		let ttl = $('.ttl'+n);
+		// let total_bayar = ("#total_bayar").val();
 
 		for (var i = 0; i < id.length; i++) {
 			idp.push($(id[i]).val());
@@ -366,6 +272,7 @@
 		// console.log(idp);
 
 		$.get("<?=base_url()?>produk/kurir/"+`${asal}/${tujuan}/${berat}/${kurir}`, {},(response)=>{
+			console.log(response);
 			let biaya = response.rajaongkir.results;
 			biaya.map((val,i)=>{
 				for (var i = 0; i < val.costs.length; i++) {
@@ -386,6 +293,7 @@
 							totalFix = parseInt(pp.value) + parseInt(result[j].total)
 							$(ttl[j]).html("Rp. "+(totalFix/1000).toFixed(3));
 							$('#total').html("Rp. "+(result[j].tot/1000).toFixed(3));
+							console.log(total);
 						}
 							
 						$("#simpan").show();				

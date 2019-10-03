@@ -87,7 +87,7 @@ class Auth extends CI_Controller
 				$query = $this->Auth_model->tambahUser($dataRegister);
 
 				if ($query) {
-					redirect('auth/register_sukses/#true');
+					redirect('auth/login');
 				}
 			}
 		}
@@ -130,7 +130,7 @@ class Auth extends CI_Controller
 		$da['jmlKeranjang'] = $q->num_rows();
 
 		$this->load->view('semprulshop/header_semprul',$data);
-		$this->load->view('semprulshop/navbar', $da);
+		// $this->load->view('semprulshop/navbar', $da);
 		$this->load->view('semprulshop/login');
 		$this->load->view('semprulshop/footer_semprul');
 

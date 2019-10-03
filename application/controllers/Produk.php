@@ -444,7 +444,7 @@
         $this->email->send();
 
         $this->load->view('semprulshop/header_semprul', $data);
-        $this->load->view('semprulshop/navbar', $da);
+        // $this->load->view('semprulshop/navbar', $da);
         $this->load->view('semprulshop/checkout_sukses', $data);
         $this->load->view('semprulshop/footer_semprul');
     }

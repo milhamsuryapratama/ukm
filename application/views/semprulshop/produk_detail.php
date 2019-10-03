@@ -1,169 +1,101 @@
-<section id="slider"><!--slider-->
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-12">
-				<div id="slider-carousel" class="carousel slide" data-ride="carousel">
-					<ol class="carousel-indicators">
-						<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
-						<li data-target="#slider-carousel" data-slide-to="1"></li>
-						<li data-target="#slider-carousel" data-slide-to="2"></li>
-					</ol>
+<div class="content">
+	<div class="wrapper">	
+		<div class="breaking-news">
+			<span class="the-title">Breaking News</span>
 
-					<div class="carousel-inner">
-						<div class="item active">
-							<div class="col-sm-6">
-								<h1><span>E</span>-SHOPPER</h1>
-								<h2>Free E-Commerce Template</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-								<button type="button" class="btn btn-default get">Get it now</button>
-							</div>
-							<div class="col-sm-6">
-								<img src="<?=base_url()?>assets/images/home/girl1.jpg" class="girl img-responsive" alt="" />
-								<img src="<?=base_url()?>assets/images/home/pricing.png"  class="pricing" alt="" />
-							</div>
-						</div>
-						<div class="item">
-							<div class="col-sm-6">
-								<h1><span>E</span>-SHOPPER</h1>
-								<h2>100% Responsive Design</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-								<button type="button" class="btn btn-default get">Get it now</button>
-							</div>
-							<div class="col-sm-6">
-								<img src="<?=base_url()?>assets/images/home/girl2.jpg" class="girl img-responsive" alt="" />
-								<img src="<?=base_url()?>assets/images/home/pricing.png"  class="pricing" alt="" />
-							</div>
+		</div>
+
+		<div class="main-content">
+			<div class="col-md-12">
+				<div class="col-md-9" style="padding:0px">
+					<?php foreach ($produk->result() as $p) { ?>
+						<div class="col-md-3" style="padding:0px">
+							<a target="_BLANK" href="http://localhost/marketplace/asset/foto_produk/gamis11.jpg">
+								<img class="" style="width:100%; border:1px solid #cecece" src="<?=base_url()?>assets/upload/gambar_produk/<?=$p->gambar?>">
+							</a>
+							<center style="margin-top:5px"></center>
+							<div style="clear:both"></div>
+							<center style="color:green;"><i>Klik untuk lihat ukuran besar.</i></center>
 						</div>
 
-						<div class="item">
-							<div class="col-sm-6">
-								<h1><span>E</span>-SHOPPER</h1>
-								<h2>Free Ecommerce Template</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-								<button type="button" class="btn btn-default get">Get it now</button>
+						<div class="col-md-9" style="padding:0px">
+							<div style="margin-left:10px">
+								<h1><?=$p->nama_produk?></h1>
+
+								<?php 
+									if ($this->session->userdata('status') == 'userLoginSukses' || $this->session->userdata('sellerStatus') == 'sellerLogged') { ?>
+										<form action="<?=base_url()?>produk/keranjang/" method="POST">
+									<?php } else { ?>
+										<form action="<?=base_url()?>auth/login" method="POST">
+									<?php }
+								 ?>								
+									<table class="table table-condensed" style="margin-bottom:0px">
+										<tbody>
+											<tr>
+												<td colspan="2" style="color:red;"><del style="color:#8a8a8a"></del><br>
+													<h1 style="display:inline-block">
+														<?php if ($p->diskon == 0) { ?>
+															<span>Rp. <?=number_format($p->harga_konsumen,0)?></span>
+														<?php } else { 
+															$diskon = ($p->diskon/100) * $p->harga_konsumen;
+															?>
+															<span>Rp. <?=number_format(($p->harga_konsumen-$diskon),0)?></span>
+														<?php } ?>
+													</h1> / pcs 
+													<a target="_BLANK" style="border-radius:15px 0px 0px 15px" class="btn btn-danger btn-sm pull-right" href="https://api.whatsapp.com/send?phone=681267771355&amp;text=Gamis Green Filosifi Oxorcities TG-3452,... Apakah%20produk%20Ini%20bisa%20Nego?...">Coba Nego Pelapak</a>
+												</td>			
+											</tr>
+											<tr>
+												<td>Jumlah : </td>
+												<td>
+													<input type="number" value="1" name="jumlah">
+													<input type="hidden" name="id_produk" value="<?=$p->id_produk?>">
+													<input type="hidden" name="penjual" value="<?=$p->username?>">
+												</td>	
+											</tr>
+											<tr>
+												<td style="font-weight:bold; width:90px">Ukuran</td>
+												<td>
+													<?php if ($pm > 0) {
+														foreach ($produk->result() as $pp) {
+															if ($pp->stok_ukuran == 0) { ?>
+																<input type="radio" name="ukuran" class="form-check-input" value="<?=$pp->id?>" disabled> <?=$pp->ukuran?>
+															<?php } else { ?>
+																<input type="radio" name="ukuran" class="form-check-input" value="<?=$pp->id?>"> <?=$pp->ukuran?>
+															<?php }
+														}
+													} ?>
+												</td>
+											</tr>
+											<tr>
+												<th>Stok</th>
+												<th><?=$p->stok?></th>
+											</tr>
+										</tbody>
+									</table>
+
+
+									<div class="alert alert-warning" style="border-radius:0px">
+										<span style="color:orange" class="glyphicon glyphicon-ok"></span>
+										<b>Jaminan 100% Aman</b><br>
+										Uang pasti kembali. Sistem pembayaran bebas penipuan.<br>
+										Barang tidak sesuai pesanan? Ikuti langkah retur barang di sini.
+									</div>									
+
+									<center><button name="submit" type="submit" class="btn btn-success btn-block btn-lg">Beli Sekarang</button></center>
+
+								</form><br><a target="_BLANK" class="btn btn-default btn-sm" href="https://api.whatsapp.com/send?phone=681267771355&amp;text=Gamis Green Filosifi Oxorcities TG-3452,... Apakah%20Stok%20Masih%20ada?..."><span class="glyphicon glyphicon-comment"></span>  Apakah Stok Masih ada?</a> 
+									<a target="_BLANK" class="btn btn-default btn-sm" href="https://api.whatsapp.com/send?phone=681267771355&amp;text=Gamis Green Filosifi Oxorcities TG-3452,... Saya%20Pesan%20Sekarang%20ya!"><span class="glyphicon glyphicon-comment"></span> Saya Pesan Sekarang ya!</a>
+									<a target="_BLANK" class="btn btn-default btn-sm" href="https://api.whatsapp.com/send?phone=681267771355&amp;text=Assalam,%20Haloo!%20Umar Lapakers,%20Saya%20Mau%20Order%20Produknya..."><span style="color:green" class="glyphicon glyphicon-certificate"></span> Chat dengan Pelapak.</a>
+								</div>
 							</div>
-							<div class="col-sm-6">
-								<img src="<?=base_url()?>assets/images/home/girl3.jpg" class="girl img-responsive" alt="" />
-								<img src="<?=base_url()?>assets/images/home/pricing.png" class="pricing" alt="" />
-							</div>
+
+
 						</div>
-
-					</div>
-
-					<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
-						<i class="fa fa-angle-left"></i>
-					</a>
-					<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
-						<i class="fa fa-angle-right"></i>
-					</a>
+					<?php break;} ?>					
 				</div>
-
+				<div style="clear:both"><br></div>					
+				<div class="clear-float"></div>
 			</div>
 		</div>
 	</div>
-</section><!--/slider-->
-
-<section id="true">
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-3">
-				<div class="left-sidebar">
-					<h2>Category</h2>
-					<div class="panel-group category-products" id="accordian"><!--category-productsr-->
-						<?php 
-						foreach ($kategori as $k) { ?>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="<?=base_url()?>produk/kategori/<?=$k['kategori_slug']?>/#true"><?=$k['nama_kategori']?></a></h4>
-								</div>
-							</div>
-						<?php } ?>
-					</div><!--/category-products-->
-				</div>
-			</div>
-
-			<?php 
-			foreach ($produk->result() as $p) { ?>
-				<div class="col-sm-9 padding-right">
-					<div class="features_items"><!--features_items-->
-						<h2 class="title text-center">Produk Detail</h2>
-						<div class="product-details"><!--product-details-->
-							<div class="col-sm-5">
-								<div class="view-product">
-									<img src="<?=base_url()?>assets/upload/gambar_produk/<?=$p->gambar?>" alt="" />				
-								</div>
-
-							</div>
-							<div class="col-sm-7">
-								<div class="product-information"><!--/product-information-->
-									<img src="images/product-details/new.jpg" class="newarrival" alt="" />
-									<h2><?=$p->nama_produk?></h2>
-									<span>
-										<?php if ($p->diskon == 0) { ?>
-											<span>Rp. <?=number_format($p->harga_konsumen,0)?></span>
-										<?php } else { 
-											$diskon = ($p->diskon/100) * $p->harga_konsumen;
-											?>
-											<span>Rp. <?=number_format(($p->harga_konsumen-$diskon),0)?></span>
-										<?php } ?>
-										<!-- <span>Rp. <?=number_format($p->harga_konsumen,0)?></span> --><br><br><br>
-										<?php 
-										if ($this->session->userdata('status') == 'userLoginSukses' || $this->session->userdata('sellerStatus') == 'sellerLogged') { ?>
-											<form action="<?=base_url()?>produk/keranjang/#keranjang" method="post">
-												<label>Quantity:</label>
-												<input type="number" value="1" name="jumlah">
-												<input type="hidden" name="id_produk" value="<?=$p->id_produk?>">
-												<input type="hidden" name="penjual" value="<?=$p->username?>">
-												<?php if ($pm > 0) { ?>
-													<div class=" form-check-inline"><?php 
-													foreach ($produk->result() as $pp) {
-														if ($pp->stok_ukuran == 0) { ?>
-														 	<input type="radio" name="ukuran" class="form-check-input" value="<?=$pp->id?>" disabled> <?=$pp->ukuran?>
-														 <?php } else { ?>
-														 	<input type="radio" name="ukuran" class="form-check-input" value="<?=$pp->id?>"> <?=$pp->ukuran?>
-														 <?php } ?>
-														
-													<?php }?>
-												</div>
-											<?php } else {
-												echo "";
-											} ?>
-											<button type="submit" class="btn btn-fefault cart" name="submit">
-												<i class="fa fa-shopping-cart"></i>
-												Add to cart
-											</button>
-										</form>
-									<?php }else{ ?>
-										<form action="<?=base_url()?>auth/login" method="post">
-											<label>Quantity:</label>
-											<input type="text" value="1" name="jumlah">
-											<input type="hidden" name="id_produk" value="<?=$p->id_produk?>"><br>
-											<div class=" form-check-inline">
-												<?php if ($pm > 0) { ?>
-													<div class=" form-check-inline"><?php 
-													foreach ($produk->result() as $pp) { ?>
-														<input type="radio" name="ukuran" class="form-check-input" value="<?=$pp->id?>"> <?=$pp->ukuran?>
-													<?php }?>
-												</div>
-											<?php } else {
-												echo "";
-											} ?>
-										</div>
-										<button type="submit" class="btn btn-fefault cart" name="submit">
-											<i class="fa fa-shopping-cart"></i>
-											Add to cart
-										</button>
-									</form>
-								<?php } break;?>									
-							</span>
-						</div><!--/product-information-->
-					</div>
-				</div><!--/product-details-->	
-			</div>
-		</div>
-	<?php }
-	?>
-
-</div>
-</div>
-</section>

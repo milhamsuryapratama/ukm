@@ -1,5 +1,6 @@
-<div class="container">
-	<table class="table">
+<div class="content">
+	<div class="wrapper">
+		<table class="table table-striped">
 		<tr>
 			<th colspan="2"><center>Data Order</center></th>
 		</tr>
@@ -188,6 +189,18 @@
 						?></td>
 						<td> 
 							<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Action <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+							<div class="btn-group">
 								<button type="button" class="btn btn-<?=$color?>"><?=$text?></button>
 								<button type="button" class="btn btn-<?=$color?> dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									<span class="sr-only">Toggle Dropdown</span>
@@ -207,4 +220,5 @@
 						<td colspan="9"><input type="button" onclick="self.history.back()" value="Kembali" class="btn btn-primary"></td>
 					</tr>
 				</table>
-			</div>
+	</div>
+</div>

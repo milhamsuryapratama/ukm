@@ -1,99 +1,106 @@
-<div class="container">
-	<form id="formOne" method="post" enctype="multipart/form-data">
-		<table class="table">
-			<tr>
-				<th>Gambar</th>
-				<td><input type="file" name="gambar_produk" class="form-control"></td>
-			</tr>
-		</table>
-		<hr>
-		<table class="table">
-			<tr>
-				<th colspan="2">Data Produk</th>
-			</tr>
-			<tr>
-				<th>Nama Produk</th>
-				<td><input type="text" name="nama_produk" class="form-control"></td>
-			</tr>
-			<tr>
-				<th>Deskripsi</th>
-				<td><textarea name="deskripsi"></textarea></td>
-			</tr>
-			<tr>
-				<th>Kategori</th>
-				<td>
-					<select class="form-control" name="kategori" id="kategori">
-	                    <?php
-	                    foreach ($kategori as $ktgr) { ?>
-	                        <option value="<?php echo $ktgr['id_kategori_produk'] ?>"><?php echo $ktgr['nama_kategori'] ?></option>
-	                    <?php  } ?>                                        
-                	</select>
-				</td>
-			</tr>
-		</table>
-		<hr>
-		<table class="table" id="stokHarga">
-			<tr>
-				<th colspan="2">Stok & Harga</th>
-			</tr>
-			<tbody id="bodyAk">
+<div class="content">
+	<div class="wrapper">
+		<form id="formOne" method="post" enctype="multipart/form-data">
+			<table class="table table-striped">
 				<tr>
-					<th>Harga</th>
-					<td><input type="text" name="harga" class="form-control"></td>
+					<th>Gambar</th>
+					<td><input type="file" name="gambar_produk" class="form-control"></td>
+				</tr>
+			</table>
+			<hr>
+			<table class="table">
+				<tr>
+					<th colspan="2">Data Produk</th>
 				</tr>
 				<tr>
-					<th>Stok</th>
-					<td><input type="text" name="stok" class="form-control"></td>
+					<th>Nama Produk</th>
+					<td><input type="text" name="nama_produk" class="form-control"></td>
 				</tr>
 				<tr>
-					<th>Variasi</th>
-					<td><input type="button" id="aktifkanVariasi" value="Aktifkan Variasi" class="btn btn-primary"></td>
-				</tr>				
-			</tbody>		
-		</table>
-
-		<table id="pp" class="table">
-			<tbody>
+					<th>Deskripsi</th>
+					<td><textarea name="deskripsi"></textarea></td>
+				</tr>
 				<tr>
-					<th>Variasi 1</th>
+					<th>Kategori</th>
 					<td>
-						<table class='table' id='variasiSatu'>
-							<tbody id="variasiBody">
-								<tr>
-									<th>Nama</th>
-									<td><input type='text' id='namaVarSatu' name="namaVarSatu" class='form-control'/>
-									</tr>
-								<tr>
-									<th>Pilihan</th>
-									<td id='pilihanSatu'><input type='text' name="namaVariasi" class='form-control' placeholder="Nama Variasi" />
-									<td><input type='number' name='stokVariasi' class='form-control' placeholder="Stok Variasi"/></td>
-								</tr>
-							</tbody>
-								<tr>
-									<td colspan="2"><input type="button" id="tambahVariasiSatu" value="Tambah Variasi" class="btn btn-primary"> <input type="button" id="tutupVariasi" value="Tutup Variasi" class="btn btn-primary"></td>
-								</tr>
-						</table>
+						<select class="form-control" name="kategori" id="kategori">
+							<?php
+							foreach ($kategori as $ktgr) { ?>
+								<option value="<?php echo $ktgr['id_kategori_produk'] ?>"><?php echo $ktgr['nama_kategori'] ?></option>
+							<?php  } ?>                                        
+						</select>
 					</td>
-				</tr>				
-			</tbody>
-		</table>
+				</tr>
+			</table>
+			<hr>
+			<table class="table" id="stokHarga">
+				<tr>
+					<th colspan="2">Stok & Harga</th>
+				</tr>
+				<tbody id="bodyAk">
+					<tr>
+						<th>Harga</th>
+						<td><input type="text" name="harga" class="form-control"></td>
+					</tr>
+					<tr>
+						<th>Stok</th>
+						<td><input type="text" name="stok" class="form-control"></td>
+					</tr>
+					<tr>
+						<th>Variasi</th>
+						<td><input type="button" id="aktifkanVariasi" value="Aktifkan Variasi" class="btn btn-primary"></td>
+					</tr>				
+				</tbody>		
+			</table>
 
-		<table class="table">
-			<tr>
-				<th>Berat</th>
-				<td><input type="text" name="berat" class="form-control"></td>
-			</tr>
-			<tr>
-				<th>Diskon</th>
-				<td><input type="text" name="diskon" class="form-control"></td>
-			</tr>
-		</table>
-				
-				<button class="btn btn-primary" id="btn_upload" type="submit">Submit</button>
+			<table id="pp" class="table">
+				<tbody>
+					<tr>
+						<th>Variasi 1</th>
+						<td>
+							<table class='table' id='variasiSatu'>
+								<tbody id="variasiBody">
+									<tr>
+										<th>Nama</th>
+										<td><input type='text' id='namaVarSatu' name="namaVarSatu" class='form-control'/>
+										</tr>
+										<tr>
+											<th>Pilihan</th>
+											<td id='pilihanSatu'><input type='text' name="namaVariasi" class='form-control' placeholder="Nama Variasi" />
+												<td><input type='number' name='stokVariasi' class='form-control' placeholder="Stok Variasi"/></td>
+											</tr>
+										</tbody>
+										<tr>
+											<td colspan="2"><input type="button" id="tambahVariasiSatu" value="Tambah Variasi" class="btn btn-primary"> <input type="button" id="tutupVariasi" value="Tutup Variasi" class="btn btn-primary"></td>
+										</tr>
+									</table>
+								</td>
+							</tr>				
+						</tbody>
+					</table>
+
+					<table class="table">
+						<tr>
+							<th>Berat</th>
+							<td><input type="text" name="berat" class="form-control"></td>
+						</tr>
+						<tr>
+							<th>Diskon</th>
+							<td><input type="text" name="diskon" class="form-control"></td>
+						</tr>
+					</table>
+
+					<button class="btn btn-primary" id="btn_upload" type="submit">Submit</button>
 				</form>
-			</div> <!-- container -->
+	</div>
+</div>
 
-			<script>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+  <script>
 				$(function(){
 
 					var variasi = false;

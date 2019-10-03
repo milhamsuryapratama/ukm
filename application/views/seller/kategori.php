@@ -1,6 +1,6 @@
-
-<div class="container">
-    <table class="table table-striped table-bordered table-hover" id="myTable">
+<div class="content">
+	<div class="wrapper">
+		<table class="table table-striped">
         <thead>
             <tr>
                 <td colspan="2"><a href="<?=base_url()?>seller/tambah_kategori" class="btn btn-primary">Tambah</a></td>
@@ -23,10 +23,5 @@
                 <?php  } ?>
         </tbody>
     </table>
+	</div>
 </div>
-
-<script>
-    $(document).ready(function() {
-			$("#myTable").DataTable();
-		});
-</script>

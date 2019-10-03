@@ -37,6 +37,7 @@ class semprul_model extends CI_Model
         $this->db->join('kategori_produk', 'kategori_produk.id_kategori_produk = produk.id_kategori_produk');
         $this->db->join('ukuran', 'ukuran.id_produk = produk.id_produk');
         $this->db->where('produk.produk_slug', $prdkSlug);
+        // $this->db->limit(1);
 		$query = $this->db->get();						
 		return $query;
     }
@@ -100,6 +101,7 @@ class semprul_model extends CI_Model
         $this->db->select("*");
         $this->db->from('order_temp');
         $this->db->join('produk', 'order_temp.id_produk = produk.id_produk');
+        $this->db->join('seller', 'produk.username = seller.username');
         $this->db->where('order_temp.id_session', $session);
         $this->db->where('order_temp.status', 'Y');
         $this->db->group_by('produk.username');
